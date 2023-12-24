@@ -69,8 +69,10 @@ function makeBooks(booksObject) {
     container.setAttribute('id', `book-${booksObject.id}`);
 
     if (booksObject.isCompleted) {
+        
         const undoButton = document.createElement('button');
         undoButton.classList.add('undo-button');
+        
 
         undoButton.addEventListener('click',function (){
             undoTaskCompleted(booksObject.id);
@@ -87,12 +89,19 @@ function makeBooks(booksObject) {
     } else {
         const checkButton = document.createElement('button');
         checkButton.classList.add('check-button');
-
+        
         checkButton.addEventListener('click', function () {
             addTaskCompleted(booksObject.id);
         });
+        
+        const trashButton = document.createElement('button');
+        trashButton.classList.add('trash-button');
 
-        container.append(checkButton);
+        trashButton.addEventListener('click', function () {
+            removeTaskCompleted(booksObject.id);
+        });
+
+        container.append(checkButton, trashButton);
 
     }
 
